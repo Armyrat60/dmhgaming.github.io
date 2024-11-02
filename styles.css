@@ -1,0 +1,399 @@
+:root {
+    --primary-color: #7289da;
+    --hover-color: #5a69a8;
+    --dark-bg: #121212;
+    --card-bg: #1a1a1a;
+    --text-color: #ffffff;
+    --text-secondary: #e0e0e0;
+    --nav-height: 60px;
+    --gradient-1: rgba(114, 137, 218, 0.15);
+    --gradient-2: rgba(90, 105, 168, 0.15);
+    --spade-color: #ffffff;
+    --heart-color: #ff5555;
+    --diamond-color: #ff5555;
+    --club-color: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    background-color: var(--dark-bg);
+    color: var(--text-color);
+    padding-top: var(--nav-height);
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 30%, var(--gradient-1) 0%, transparent 70%),
+        radial-gradient(circle at 80% 70%, var(--gradient-2) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.background-shapes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    overflow: hidden;
+}
+
+.shape {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.15;
+    font-size: 2.5rem;
+    font-family: Arial, sans-serif;
+    pointer-events: none;
+    will-change: transform;
+}
+
+.shape.spade::before {
+    content: '♠';
+    color: var(--spade-color);
+}
+
+.shape.heart::before {
+    content: '♥';
+    color: var(--heart-color);
+}
+
+.shape.diamond::before {
+    content: '♦';
+    color: var(--diamond-color);
+}
+
+.shape.club::before {
+    content: '♣';
+    color: var(--club-color);
+}
+
+/* Navigation */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--nav-height);
+    background-color: rgba(26, 26, 26, 0.95);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+}
+
+.nav-logo {
+    height: 40px;
+    width: auto;
+}
+
+nav ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--primary-color);
+}
+
+/* Hero Section */
+.hero {
+    min-height: calc(100vh - var(--nav-height));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    background-color: transparent;
+}
+
+.hero-logo {
+    width: 200px;
+    height: auto;
+    margin-bottom: 2rem;
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-video {
+    width: 100%;
+    max-width: 1200px;
+    margin: 2rem 0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.hero-video video {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Games Section */
+#games {
+    padding: 4rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.games {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.game-card {
+    background-color: rgba(26, 26, 26, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+}
+
+.game-card-slideshow {
+    position: relative;
+    height: 200px;
+    cursor: pointer;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.game-card-content {
+    padding: 1.5rem;
+}
+
+.game-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+/* About Section */
+#about {
+    padding: 4rem 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about-section {
+    background-color: rgba(26, 26, 26, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.about-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: clamp(1.8rem, 3vw, 2.2rem);
+}
+
+.about-section p {
+    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+}
+
+/* Discord Button */
+.discord-button {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(114, 137, 218, 0.3);
+    margin-top: 2rem;
+}
+
+.discord-button:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(114, 137, 218, 0.4);
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1100;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 2rem;
+}
+
+.modal-content {
+    max-width: 90%;
+    max-height: 90vh;
+    margin: auto;
+    display: block;
+    object-fit: contain;
+}
+
+.modal-close {
+    position: absolute;
+    right: 2rem;
+    top: 1rem;
+    color: var(--text-color);
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.modal-caption {
+    text-align: center;
+    color: var(--text-color);
+    padding: 1rem;
+}
+
+/* Footer */
+footer {
+    background-color: rgba(26, 26, 26, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    text-align: center;
+    margin-top: 4rem;
+    position: relative;
+    z-index: 1;
+}
+
+.footer-logo {
+    height: 40px;
+    width: auto;
+    margin-bottom: 1rem;
+}
+
+.legal-links {
+    margin-top: 1rem;
+}
+
+.legal-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    margin: 0 0.5rem;
+}
+
+.legal-links a:hover {
+    color: var(--primary-color);
+}
+
+/* Legal Pages */
+.legal-content {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: rgba(26, 26, 26, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+}
+
+.legal-content h1 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.legal-content section {
+    margin: 2rem 0;
+}
+
+.legal-content h2 {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.legal-content ul {
+    margin-left: 2rem;
+    margin-top: 1rem;
+}
+
+.legal-content li {
+    margin-bottom: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav {
+        padding: 0 1rem;
+    }
+
+    nav ul {
+        gap: 1rem;
+    }
+
+    .games {
+        grid-template-columns: 1fr;
+    }
+
+    .legal-content {
+        padding: 1rem;
+        margin: 1rem;
+    }
+}
